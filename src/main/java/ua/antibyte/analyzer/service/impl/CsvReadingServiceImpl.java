@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.stereotype.Service;
 import ua.antibyte.analyzer.service.CsvReadingService;
 
-@Service
 public class CsvReadingServiceImpl implements CsvReadingService {
     private static final String[] FILE_HEADER = new String[]{
             "Id", "ProductId", "UserId", "ProfileName", "HelpfulnessNumerator",
