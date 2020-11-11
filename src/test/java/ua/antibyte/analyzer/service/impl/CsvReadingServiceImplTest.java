@@ -1,16 +1,19 @@
 package ua.antibyte.analyzer.service.impl;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.opencsv.CSVReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import ua.antibyte.analyzer.service.CsvReadingService;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CsvReadingServiceImplTest {
+    private static final String FILE_PATH = "src/test/resources/test_file.csv";
+    private static final String FILE_PATH_WITHOUT_HEADER = "src/test/resources/test_file_without_header.csv";
     private static final String WRONG_FILE_PATH = "random/path";
-    private static final String CORRECT_FILE_PATH = "src/test/resources/test_file.csv";
     private static final List<String[]> EXPECTED_DATA_FOR_CORRECT_READING_FROM_FILE = List.of(new String[]{
             "1", "B00813GRG4", "A1D87F6ZCVE5NK", "dll pa", "0", "0", "1", "1346976000",
             "Not as Advertised", "Product arrived labeled as Jumbo Salted Peanuts...the "
@@ -34,14 +37,28 @@ class CsvReadingServiceImplTest {
     @Test
     public void correctReadingFromFile() {
         try {
-            CSVReader csvReader = new CSVReader(new FileReader(CORRECT_FILE_PATH));
+            CSVReader csvReader = new CSVReader(new FileReader(FILE_PATH));
             CsvReadingService csvReadingService = new CsvReadingServiceImpl(csvReader);
             List<String[]> actualData = csvReadingService.read();
             for (int i = 0; i < actualData.size(); i++) {
                 assertArrayEquals(EXPECTED_DATA_FOR_CORRECT_READING_FROM_FILE.get(i), actualData.get(i));
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Can't to run test, file not found " + CORRECT_FILE_PATH, e);
+            throw new RuntimeException("Can't to run test, file not found " + FILE_PATH, e);
+        }
+    }
+
+    @Test
+    public void correctReadingFromFileWithoutHeader() {
+        try {
+            CSVReader csvReader = new CSVReader(new FileReader(FILE_PATH_WITHOUT_HEADER));
+            CsvReadingService csvReadingService = new CsvReadingServiceImpl(csvReader);
+            List<String[]> actualData = csvReadingService.read();
+            for (int i = 0; i < actualData.size(); i++) {
+                assertArrayEquals(EXPECTED_DATA_FOR_CORRECT_READING_FROM_FILE.get(i), actualData.get(i));
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Can't to run test, file not found " + FILE_PATH_WITHOUT_HEADER, e);
         }
     }
 }

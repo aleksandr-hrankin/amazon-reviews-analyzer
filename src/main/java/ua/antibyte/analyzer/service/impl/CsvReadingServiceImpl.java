@@ -34,6 +34,5 @@ public class CsvReadingServiceImpl implements CsvReadingService {
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException("Can't read file ", e);
         }
-
     }
 }
