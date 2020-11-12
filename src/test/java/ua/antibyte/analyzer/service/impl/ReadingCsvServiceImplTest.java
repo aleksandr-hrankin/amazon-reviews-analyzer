@@ -71,14 +71,14 @@ class ReadingCsvServiceImplTest {
     @Test
     public void parsingWhenEmptyFile() {
         List<CommentDto> expected = Collections.emptyList();
-        List<CommentDto> actual = new ua.antibyte.analyzer.service.impl.CommentFileCsvParser().parse(EMPTY_FILE);
+        List<CommentDto> actual = fileCsvParser.parse(EMPTY_FILE);
         assertEquals(expected, actual);
     }
 
     @Test
     public void parsingWhenEmptyFileWithHeader() {
         List<CommentDto> expected = Collections.emptyList();
-        List<CommentDto> actual = new ua.antibyte.analyzer.service.impl.CommentFileCsvParser().parse(EMPTY_FILE_WITH_HEADER);
+        List<CommentDto> actual = fileCsvParser.parse(EMPTY_FILE_WITH_HEADER);
         assertEquals(expected, actual);
     }
 
