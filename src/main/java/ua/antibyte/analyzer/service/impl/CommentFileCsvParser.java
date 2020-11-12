@@ -14,10 +14,10 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import ua.antibyte.analyzer.dto.CommentDto;
+import ua.antibyte.analyzer.service.FileCsvParser;
 
 @Service
-public class CommentFileCsvParser
-        implements ua.antibyte.analyzer.service.FileCsvParser<CommentDto> {
+public class CommentFileCsvParser implements FileCsvParser<CommentDto> {
     private static final String[] FILE_HEADER = new String[]{
             "Id", "ProductId", "UserId", "ProfileName", "HelpfulnessNumerator",
             "HelpfulnessDenominator", "Score", "Time", "Summary", "Text"};

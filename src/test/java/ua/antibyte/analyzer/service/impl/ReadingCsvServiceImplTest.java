@@ -58,7 +58,7 @@ class ReadingCsvServiceImplTest {
 
     @BeforeAll
     static void beforeAll() {
-        fileCsvParser = new ua.antibyte.analyzer.service.impl.CommentFileCsvParser();
+        fileCsvParser = new CommentFileCsvParser();
     }
 
     @Test
