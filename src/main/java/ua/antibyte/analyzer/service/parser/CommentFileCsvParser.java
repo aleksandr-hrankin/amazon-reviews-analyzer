@@ -1,4 +1,4 @@
-package ua.antibyte.analyzer.service.impl;
+package ua.antibyte.analyzer.service.parser;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -14,7 +14,6 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import ua.antibyte.analyzer.dto.CommentDto;
-import ua.antibyte.analyzer.service.FileCsvParser;
 
 @Service
 public class CommentFileCsvParser implements FileCsvParser<CommentDto> {
@@ -33,7 +32,7 @@ public class CommentFileCsvParser implements FileCsvParser<CommentDto> {
             }
             return commentDtos;
         } catch (IOException e) {
-            throw new RuntimeException("Can't parse file by path" + path, e);
+            throw new RuntimeException("Can't parse file by path: " + path, e);
         }
     }
 
