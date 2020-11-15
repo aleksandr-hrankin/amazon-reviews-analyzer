@@ -1,4 +1,4 @@
-package ua.antibyte.analyzer.service.impl;
+package ua.antibyte.analyzer.service.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,9 +11,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ua.antibyte.analyzer.dto.CommentDto;
-import ua.antibyte.analyzer.service.FileCsvParser;
 
-class ReadingCsvServiceImplTest {
+class CommentFileCsvParserTest {
     private static final String WRONG_FILE_PATH = "random/path";
     private static final String EMPTY_FILE = "src/test/resources/test_empty_file.csv";
     private static final String EMPTY_FILE_WITH_HEADER = "src/test/resources/test_empty_file_with_header.csv";
@@ -62,34 +61,34 @@ class ReadingCsvServiceImplTest {
     }
 
     @Test
-    public void getExceptionWhenInvalidFilePath() {
+    public void getExceptionWhenInvalidFilePathTest() {
         assertThrows(RuntimeException.class, () -> {
             fileCsvParser.parse(WRONG_FILE_PATH);
         });
     }
 
     @Test
-    public void parsingWhenEmptyFile() {
+    public void parsingWhenEmptyFileTest() {
         List<CommentDto> expected = Collections.emptyList();
         List<CommentDto> actual = fileCsvParser.parse(EMPTY_FILE);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void parsingWhenEmptyFileWithHeader() {
+    public void parsingWhenEmptyFileWithHeaderTest() {
         List<CommentDto> expected = Collections.emptyList();
         List<CommentDto> actual = fileCsvParser.parse(EMPTY_FILE_WITH_HEADER);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void correctParsingFromFile() {
+    public void correctParsingFromFileTest() {
         List<CommentDto> actualData = fileCsvParser.parse(FILE_PATH);
         equalsCommentDtoLists(EXPECTED_COMMENT_DTOS, actualData);
     }
 
     @Test
-    public void parsingFromFileWithoutHeader() {
+    public void parsingFromFileWithoutHeaderTest() {
         assertThrows(RuntimeException.class, () -> {
             fileCsvParser.parse(FILE_PATH_WITHOUT_HEADER);
         });

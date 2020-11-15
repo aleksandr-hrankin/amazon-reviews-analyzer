@@ -1,4 +1,4 @@
-package ua.antibyte.analyzer.service;
+package ua.antibyte.analyzer.service.parser;
 
 import java.util.List;
 
