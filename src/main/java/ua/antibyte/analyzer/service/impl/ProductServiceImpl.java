@@ -1,7 +1,7 @@
 package ua.antibyte.analyzer.service.impl;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ua.antibyte.analyzer.entity.dto.response.ProductRespDto;
 import ua.antibyte.analyzer.repository.ProductRepository;
@@ -16,7 +16,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductRespDto> findMostCommented(Pageable pageable) {
-        return productRepository.findMostCommented(pageable);
+    public Page<ProductRespDto> findMostCommented(int size) {
+        return productRepository.findMostCommented(PageRequest.of(0, size));
     }
 }

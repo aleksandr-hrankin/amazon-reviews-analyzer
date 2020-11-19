@@ -55,32 +55,24 @@ public class DefaultDataInjector {
     }
 
     private void injectData() {
-        long start = System.currentTimeMillis();
         List<CommentReqDto> commentReqDtos = fileCsvParser.parse(FILE_PATH);
-        log.info("File parsed SUCCESSFULLY [path:" + FILE_PATH + "] [time: "
-                + getTime(start) + "]");
+        log.info("File parsed SUCCESSFULLY [path:" + FILE_PATH + "]");
 
         List<Comment> comments = commentRequestDtosParser.parse(commentReqDtos);
-        log.info("CommentRequestDtos parsed to comments SUCCESSFULLY [time: "
-                + getTime(start) + "]");
+        log.info("CommentRequestDtos parsed to comments SUCCESSFULLY");
 
         commentService.saveAll(comments);
-        log.info("Comments saved SUCCESSFULLY [time: " + getTime(start) + "]");
+        log.info("Comments saved SUCCESSFULLY");
 
         Map<String, Integer> wordCount = wordCounterInComments.count(comments);
-        log.info("Words in comments were counted SUCCESSFULLY [time: "
-                + getTime(start) + "]");
+        log.info("Words in comments were counted SUCCESSFULLY");
 
         List<Word> words = wordCount.entrySet().stream()
                 .map(entry -> new Word(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
-        log.info("Words mapped SUCCESSFULLY [time: " + getTime(start) + "]");
+        log.info("Words mapped SUCCESSFULLY");
 
         wordService.saveAll(words);
-        log.info("Words saved SUCCESSFULLY [time: " + getTime(start) + "]");
-    }
-
-    private long getTime(long start) {
-        return (System.currentTimeMillis() - start) / 1000 / 60;
+        log.info("Words saved SUCCESSFULLY");
     }
 }
