@@ -1,4 +1,4 @@
-package ua.antibyte.analyzer.service.mapper;
+package ua.antibyte.analyzer.service.mapper.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -10,13 +10,13 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import ua.antibyte.analyzer.dto.CommentDto;
 import ua.antibyte.analyzer.entity.Role;
 import ua.antibyte.analyzer.entity.User;
+import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
 import ua.antibyte.analyzer.service.RoleService;
 
 class UserMapperTest {
-    private static final CommentDto FULL_COMMENT_DTO = CommentDto.builder()
+    private static final CommentReqDto FULL_COMMENT_DTO = CommentReqDto.builder()
             .id(1L)
             .productId("B00813GRG4")
             .userId("A1D87F6ZCVE5NK")
@@ -32,7 +32,7 @@ class UserMapperTest {
                     + "this was an error or if the vendor intended to represent "
                     + "the product as 'Jumbo'.")
             .build();
-    private static final CommentDto COMMENT_DTO_WITHOUT_USER_FIELDS = CommentDto.builder()
+    private static final CommentReqDto COMMENT_DTO_WITHOUT_USER_FIELDS = CommentReqDto.builder()
             .id(1L)
             .productId("B00813GRG4")
             .helpfulnessNumerator(0)
@@ -46,10 +46,10 @@ class UserMapperTest {
                     + "this was an error or if the vendor intended to represent "
                     + "the product as 'Jumbo'.")
             .build();
-    private static final CommentDto INCOMPLETE_COMMENT_DTO = CommentDto.builder()
+    private static final CommentReqDto INCOMPLETE_COMMENT_DTO = CommentReqDto.builder()
             .userId("A1D87F6ZCVE5NK")
             .build();
-    private static final CommentDto EMPTY_COMMENT_DTO = CommentDto.builder().build();
+    private static final CommentReqDto EMPTY_COMMENT_DTO = CommentReqDto.builder().build();
     private static UserMapper userMapper;
 
     @BeforeAll

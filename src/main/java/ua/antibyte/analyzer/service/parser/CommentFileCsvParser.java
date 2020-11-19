@@ -13,24 +13,24 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
-import ua.antibyte.analyzer.dto.CommentDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
 
 @Service
-public class CommentFileCsvParser implements FileCsvParser<CommentDto> {
+public class CommentFileCsvParser implements FileCsvParser<CommentReqDto> {
     private static final String[] FILE_HEADER = new String[]{
             "Id", "ProductId", "UserId", "ProfileName", "HelpfulnessNumerator",
             "HelpfulnessDenominator", "Score", "Time", "Summary", "Text"};
 
     @Override
-    public List<CommentDto> parse(String path) {
+    public List<CommentReqDto> parse(String path) {
         try {
             CSVParser csvParser = getCsvParser(Files.newBufferedReader(Paths.get(path)));
-            List<CommentDto> commentDtos = new ArrayList<>();
+            List<CommentReqDto> commentReqDtos = new ArrayList<>();
             for (CSVRecord csvRecord : csvParser) {
-                CommentDto commentDto = mapCsvRecordToCommentDto(csvRecord);
-                commentDtos.add(commentDto);
+                CommentReqDto commentReqDto = mapCsvRecordToCommentDto(csvRecord);
+                commentReqDtos.add(commentReqDto);
             }
-            return commentDtos;
+            return commentReqDtos;
         } catch (IOException e) {
             throw new RuntimeException("Can't parse file by path: " + path, e);
         }
@@ -43,8 +43,8 @@ public class CommentFileCsvParser implements FileCsvParser<CommentDto> {
                 .parse(reader);
     }
 
-    private CommentDto mapCsvRecordToCommentDto(CSVRecord csvRecord) {
-        return CommentDto.builder()
+    private CommentReqDto mapCsvRecordToCommentDto(CSVRecord csvRecord) {
+        return CommentReqDto.builder()
                 .id(Long.parseLong(csvRecord.get(FILE_HEADER[0])))
                 .productId(csvRecord.get(FILE_HEADER[1]))
                 .userId(csvRecord.get(FILE_HEADER[2]))
