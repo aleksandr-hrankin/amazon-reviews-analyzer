@@ -1,9 +1,9 @@
 package ua.antibyte.analyzer.controller;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.antibyte.analyzer.entity.dto.response.WordRespDto;
 import ua.antibyte.analyzer.service.WordService;
@@ -23,7 +23,7 @@ public class CommentController {
     }
 
     @GetMapping("most-used-words")
-    public Page<WordRespDto> getMostUsedWords(@RequestParam(defaultValue = PAGE_SIZE) int size) {
-        return wordService.findMostUsedWords(size).map(wordRespDtoMapper::map);
+    public Page<WordRespDto> getMostUsedWords(Pageable pageable) {
+        return wordService.findMostUsedWords(pageable).map(wordRespDtoMapper::map);
     }
 }
