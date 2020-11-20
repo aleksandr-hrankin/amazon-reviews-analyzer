@@ -12,11 +12,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ua.antibyte.analyzer.entity.Role;
 import ua.antibyte.analyzer.entity.User;
-import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 import ua.antibyte.analyzer.service.RoleService;
 
 class UserMapperTest {
-    private static final CommentReqDto FULL_COMMENT_DTO = CommentReqDto.builder()
+    private static final CommentRequestDto FULL_COMMENT_DTO = CommentRequestDto.builder()
             .id(1L)
             .productId("B00813GRG4")
             .userId("A1D87F6ZCVE5NK")
@@ -32,7 +32,8 @@ class UserMapperTest {
                     + "this was an error or if the vendor intended to represent "
                     + "the product as 'Jumbo'.")
             .build();
-    private static final CommentReqDto COMMENT_DTO_WITHOUT_USER_FIELDS = CommentReqDto.builder()
+    private static final CommentRequestDto COMMENT_DTO_WITHOUT_USER_FIELDS
+            = CommentRequestDto.builder()
             .id(1L)
             .productId("B00813GRG4")
             .helpfulnessNumerator(0)
@@ -46,10 +47,10 @@ class UserMapperTest {
                     + "this was an error or if the vendor intended to represent "
                     + "the product as 'Jumbo'.")
             .build();
-    private static final CommentReqDto INCOMPLETE_COMMENT_DTO = CommentReqDto.builder()
+    private static final CommentRequestDto INCOMPLETE_COMMENT_DTO = CommentRequestDto.builder()
             .userId("A1D87F6ZCVE5NK")
             .build();
-    private static final CommentReqDto EMPTY_COMMENT_DTO = CommentReqDto.builder().build();
+    private static final CommentRequestDto EMPTY_COMMENT_DTO = CommentRequestDto.builder().build();
     private static UserMapper userMapper;
 
     @BeforeAll

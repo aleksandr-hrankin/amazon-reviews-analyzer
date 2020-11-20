@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import ua.antibyte.analyzer.entity.Comment;
 import ua.antibyte.analyzer.entity.Role;
 import ua.antibyte.analyzer.entity.Word;
-import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 import ua.antibyte.analyzer.service.CommentService;
 import ua.antibyte.analyzer.service.RoleService;
 import ua.antibyte.analyzer.service.WordService;
@@ -22,14 +22,14 @@ import ua.antibyte.analyzer.service.parser.FileCsvParser;
 public class DefaultDataInjector {
     private static final String FILE_PATH = "src/main/resources/Test.csv";
     private final RoleService roleService;
-    private final FileCsvParser<CommentReqDto> fileCsvParser;
+    private final FileCsvParser<CommentRequestDto> fileCsvParser;
     private final CommentRequestDtosParser commentRequestDtosParser;
     private final CommentService commentService;
     private final WordCounterInComments wordCounterInComments;
     private final WordService wordService;
 
     public DefaultDataInjector(RoleService roleService,
-                               FileCsvParser<CommentReqDto> fileCsvParser,
+                               FileCsvParser<CommentRequestDto> fileCsvParser,
                                CommentRequestDtosParser commentRequestDtosParser,
                                CommentService commentService,
                                WordCounterInComments wordCounterInComments,
@@ -55,10 +55,10 @@ public class DefaultDataInjector {
     }
 
     private void injectData() {
-        List<CommentReqDto> commentReqDtos = fileCsvParser.parse(FILE_PATH);
+        List<CommentRequestDto> commentRequestDtos = fileCsvParser.parse(FILE_PATH);
         log.info("File parsed SUCCESSFULLY [path:" + FILE_PATH + "]");
 
-        List<Comment> comments = commentRequestDtosParser.parse(commentReqDtos);
+        List<Comment> comments = commentRequestDtosParser.parse(commentRequestDtos);
         log.info("CommentRequestDtos parsed to comments SUCCESSFULLY");
 
         commentService.saveAll(comments);

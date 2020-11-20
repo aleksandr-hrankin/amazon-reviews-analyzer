@@ -1,9 +1,8 @@
 package ua.antibyte.analyzer.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import ua.antibyte.analyzer.entity.dto.response.UserRespDto;
+import java.util.List;
+import ua.antibyte.analyzer.entity.dto.response.UserResponseDto;
 
 public interface UserService {
-    Page<UserRespDto> findMostActive(Pageable pageable);
+    List<UserResponseDto> findMostActive(int quantity);
 }

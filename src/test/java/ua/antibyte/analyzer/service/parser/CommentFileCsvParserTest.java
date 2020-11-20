@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 
 class CommentFileCsvParserTest {
     private static final String WRONG_FILE_PATH = "random/path";
@@ -20,8 +20,8 @@ class CommentFileCsvParserTest {
     private static final String FILE_PATH = "src/test/resources/test_file.csv";
     private static final String FILE_PATH_WITHOUT_HEADER
             = "src/test/resources/test_file_without_header.csv";
-    private static final List<CommentReqDto> EXPECTED_COMMENT_DTOS = List.of(
-            CommentReqDto.builder()
+    private static final List<CommentRequestDto> EXPECTED_COMMENT_DTOS = List.of(
+            CommentRequestDto.builder()
                     .id(1L)
                     .productId("B00813GRG4")
                     .userId("A1D87F6ZCVE5NK")
@@ -37,7 +37,7 @@ class CommentFileCsvParserTest {
                             + "this was an error or if the vendor intended to represent "
                             + "the product as 'Jumbo'.")
                     .build(),
-            CommentReqDto.builder()
+            CommentRequestDto.builder()
                     .id(2L)
                     .productId("B001E4KFG0")
                     .userId("A3SGXH7AUHU8GW")
@@ -56,7 +56,7 @@ class CommentFileCsvParserTest {
                     .build()
     );
 
-    private static FileCsvParser<CommentReqDto> fileCsvParser;
+    private static FileCsvParser<CommentRequestDto> fileCsvParser;
 
     @BeforeAll
     static void beforeAll() {
@@ -72,21 +72,21 @@ class CommentFileCsvParserTest {
 
     @Test
     public void parsingWhenEmptyFileTest() {
-        List<CommentReqDto> expected = Collections.emptyList();
-        List<CommentReqDto> actual = fileCsvParser.parse(EMPTY_FILE);
+        List<CommentRequestDto> expected = Collections.emptyList();
+        List<CommentRequestDto> actual = fileCsvParser.parse(EMPTY_FILE);
         assertEquals(expected, actual);
     }
 
     @Test
     public void parsingWhenEmptyFileWithHeaderTest() {
-        List<CommentReqDto> expected = Collections.emptyList();
-        List<CommentReqDto> actual = fileCsvParser.parse(EMPTY_FILE_WITH_HEADER);
+        List<CommentRequestDto> expected = Collections.emptyList();
+        List<CommentRequestDto> actual = fileCsvParser.parse(EMPTY_FILE_WITH_HEADER);
         assertEquals(expected, actual);
     }
 
     @Test
     public void correctParsingFromFileTest() {
-        List<CommentReqDto> actualData = fileCsvParser.parse(FILE_PATH);
+        List<CommentRequestDto> actualData = fileCsvParser.parse(FILE_PATH);
         equalsCommentDtoLists(EXPECTED_COMMENT_DTOS, actualData);
     }
 
@@ -97,7 +97,8 @@ class CommentFileCsvParserTest {
         });
     }
 
-    private void equalsCommentDtoLists(List<CommentReqDto> expected, List<CommentReqDto> actual) {
+    private void equalsCommentDtoLists(List<CommentRequestDto> expected,
+                                       List<CommentRequestDto> actual) {
         for (int i = 0; i < actual.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));
         }

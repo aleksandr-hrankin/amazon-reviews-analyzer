@@ -1,8 +1,7 @@
 package ua.antibyte.analyzer.service.impl;
 
 import java.util.List;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ua.antibyte.analyzer.entity.Word;
 import ua.antibyte.analyzer.repository.WordRepository;
@@ -22,7 +21,7 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public Page<Word> findMostUsedWords(Pageable pageable) {
-        return wordRepository.findAllByOrderByCountDesc(pageable);
+    public List<Word> findMostUsedWords(int quantity) {
+        return wordRepository.findAllByOrderByCountDesc(PageRequest.of(0, quantity));
     }
 }

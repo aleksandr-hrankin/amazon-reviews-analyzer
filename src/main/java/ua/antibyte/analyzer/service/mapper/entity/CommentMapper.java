@@ -2,18 +2,18 @@ package ua.antibyte.analyzer.service.mapper.entity;
 
 import org.springframework.stereotype.Component;
 import ua.antibyte.analyzer.entity.Comment;
-import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 
 @Component
 public class CommentMapper {
-    public Comment map(CommentReqDto commentReqDto) {
+    public Comment map(CommentRequestDto commentRequestDto) {
         Comment comment = new Comment();
-        comment.setHelpfulnessNumerator(commentReqDto.getHelpfulnessNumerator());
-        comment.setHelpfulnessDenominator(commentReqDto.getHelpfulnessDenominator());
-        comment.setScore(commentReqDto.getScore());
-        comment.setTime(commentReqDto.getTime());
-        comment.setSummary(commentReqDto.getSummary());
-        comment.setText(commentReqDto.getText());
+        comment.setHelpfulnessNumerator(commentRequestDto.getHelpfulnessNumerator());
+        comment.setHelpfulnessDenominator(commentRequestDto.getHelpfulnessDenominator());
+        comment.setScore(commentRequestDto.getScore());
+        comment.setTime(commentRequestDto.getTime());
+        comment.setSummary(commentRequestDto.getSummary());
+        comment.setText(commentRequestDto.getText());
         return comment;
     }
 }

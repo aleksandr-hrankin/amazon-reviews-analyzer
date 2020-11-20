@@ -8,10 +8,10 @@ import java.time.ZoneId;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ua.antibyte.analyzer.entity.Comment;
-import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 
 class CommentMapperTest {
-    private static final CommentReqDto FULL_COMMENT_DTO = CommentReqDto.builder()
+    private static final CommentRequestDto FULL_COMMENT_DTO = CommentRequestDto.builder()
             .id(1L)
             .productId("B00813GRG4")
             .userId("A1D87F6ZCVE5NK")
@@ -27,12 +27,13 @@ class CommentMapperTest {
                     + "this was an error or if the vendor intended to represent "
                     + "the product as 'Jumbo'.")
             .build();
-    private static final CommentReqDto COMMENT_DTO_WITHOUT_COMMENT_FIELDS = CommentReqDto.builder()
+    private static final CommentRequestDto COMMENT_DTO_WITHOUT_COMMENT_FIELDS
+            = CommentRequestDto.builder()
             .productId("B00813GRG4")
             .userId("A1D87F6ZCVE5NK")
             .profileName("dll pa")
             .build();
-    private static final CommentReqDto INCOMPLETE_COMMENT_DTO = CommentReqDto.builder()
+    private static final CommentRequestDto INCOMPLETE_COMMENT_DTO = CommentRequestDto.builder()
             .id(1L)
             .productId("B00813GRG4")
             .userId("A1D87F6ZCVE5NK")
@@ -42,7 +43,7 @@ class CommentMapperTest {
                     ZoneId.systemDefault()))
             .summary("Not as Advertised")
             .build();
-    private static final CommentReqDto EMPTY_COMMENT_DTO = CommentReqDto.builder().build();
+    private static final CommentRequestDto EMPTY_COMMENT_DTO = CommentRequestDto.builder().build();
     private static CommentMapper commentMapper;
 
     @BeforeAll

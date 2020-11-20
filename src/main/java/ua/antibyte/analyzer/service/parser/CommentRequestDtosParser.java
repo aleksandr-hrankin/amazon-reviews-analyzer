@@ -8,15 +8,13 @@ import org.springframework.stereotype.Component;
 import ua.antibyte.analyzer.entity.Comment;
 import ua.antibyte.analyzer.entity.Product;
 import ua.antibyte.analyzer.entity.User;
-import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 import ua.antibyte.analyzer.service.mapper.entity.CommentMapper;
 import ua.antibyte.analyzer.service.mapper.entity.ProductMapper;
 import ua.antibyte.analyzer.service.mapper.entity.UserMapper;
 
 @Component
 public class CommentRequestDtosParser {
-    private static final Map<String, Product> products = new HashMap<>();
-    private static final Map<String, User> users = new HashMap<>();
     private final ProductMapper productMapper;
     private final UserMapper userMapper;
     private final CommentMapper commentMapper;
@@ -29,8 +27,10 @@ public class CommentRequestDtosParser {
         this.commentMapper = commentMapper;
     }
 
-    public List<Comment> parse(List<CommentReqDto> commentReqDtos) {
-        return commentReqDtos.stream()
+    public List<Comment> parse(List<CommentRequestDto> commentRequestDtos) {
+        Map<String, Product> products = new HashMap<>();
+        Map<String, User> users = new HashMap<>();
+        return commentRequestDtos.stream()
                 .map(commentRequestDto -> {
                     Product product = productMapper.map(commentRequestDto);
                     products.putIfAbsent(product.getExternalId(), product);

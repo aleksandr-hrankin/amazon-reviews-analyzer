@@ -8,12 +8,12 @@ import ua.antibyte.analyzer.entity.Comment;
 
 @Component
 public class WordCounterInComments {
-    private static final String SEPARATOR_PATTERN = "([ ,.;!?]\\s*)";
+    private static final String SEPARATOR_PATTERN = "\\W";
 
     public Map<String, Integer> count(List<Comment> comments) {
         Map<String, Integer> allWords = new HashMap<>();
         for (Comment comment : comments) {
-            if ("".equals(comment.getText())) {
+            if (comment.getText().isBlank()) {
                 continue;
             }
             String[] wordsText = comment.getText().toLowerCase().trim().split(SEPARATOR_PATTERN);

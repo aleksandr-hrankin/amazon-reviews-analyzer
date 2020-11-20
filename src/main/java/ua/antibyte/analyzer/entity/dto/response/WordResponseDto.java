@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class WordRespDto {
+public class WordResponseDto {
     private String word;
     private Integer count;
 }

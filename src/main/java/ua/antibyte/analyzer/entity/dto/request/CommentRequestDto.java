@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CommentReqDto {
+public class CommentRequestDto {
     private Long id;
     private String profileName;
     private int helpfulnessNumerator;

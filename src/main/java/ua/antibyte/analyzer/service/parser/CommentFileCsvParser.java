@@ -13,24 +13,24 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
-import ua.antibyte.analyzer.entity.dto.request.CommentReqDto;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 
 @Service
-public class CommentFileCsvParser implements FileCsvParser<CommentReqDto> {
+public class CommentFileCsvParser implements FileCsvParser<CommentRequestDto> {
     private static final String[] FILE_HEADER = new String[]{
             "Id", "ProductId", "UserId", "ProfileName", "HelpfulnessNumerator",
             "HelpfulnessDenominator", "Score", "Time", "Summary", "Text"};
 
     @Override
-    public List<CommentReqDto> parse(String path) {
+    public List<CommentRequestDto> parse(String path) {
         try {
             CSVParser csvParser = getCsvParser(Files.newBufferedReader(Paths.get(path)));
-            List<CommentReqDto> commentReqDtos = new ArrayList<>();
+            List<CommentRequestDto> commentRequestDtos = new ArrayList<>();
             for (CSVRecord csvRecord : csvParser) {
-                CommentReqDto commentReqDto = mapCsvRecordToCommentDto(csvRecord);
-                commentReqDtos.add(commentReqDto);
+                CommentRequestDto commentRequestDto = mapCsvRecordToCommentDto(csvRecord);
+                commentRequestDtos.add(commentRequestDto);
             }
-            return commentReqDtos;
+            return commentRequestDtos;
         } catch (IOException e) {
             throw new RuntimeException("Can't parse file by path: " + path, e);
         }
@@ -43,8 +43,8 @@ public class CommentFileCsvParser implements FileCsvParser<CommentReqDto> {
                 .parse(reader);
     }
 
-    private CommentReqDto mapCsvRecordToCommentDto(CSVRecord csvRecord) {
-        return CommentReqDto.builder()
+    private CommentRequestDto mapCsvRecordToCommentDto(CSVRecord csvRecord) {
+        return CommentRequestDto.builder()
                 .id(Long.parseLong(csvRecord.get(FILE_HEADER[0])))
                 .productId(csvRecord.get(FILE_HEADER[1]))
                 .userId(csvRecord.get(FILE_HEADER[2]))

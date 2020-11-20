@@ -1,9 +1,9 @@
 package ua.antibyte.analyzer.service.impl;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import ua.antibyte.analyzer.entity.dto.response.UserRespDto;
+import ua.antibyte.analyzer.entity.dto.response.UserResponseDto;
 import ua.antibyte.analyzer.repository.UserRepository;
 import ua.antibyte.analyzer.service.UserService;
 
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserRespDto> findMostActive(Pageable pageable) {
-        return userRepository.findMostActive(pageable);
+    public List<UserResponseDto> findMostActive(int quantity) {
+        return userRepository.findMostActive(PageRequest.of(0, quantity));
     }
 }
