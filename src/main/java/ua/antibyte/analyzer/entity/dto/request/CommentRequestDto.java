@@ -1,4 +1,4 @@
-package ua.antibyte.analyzer.dto;
+package ua.antibyte.analyzer.entity.dto.request;
 
 import java.time.LocalDateTime;
 import lombok.Builder;
@@ -6,10 +6,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CommentDto {
+public class CommentRequestDto {
     private Long id;
-    private String productId;
-    private String userId;
     private String profileName;
     private int helpfulnessNumerator;
     private int helpfulnessDenominator;
@@ -17,4 +15,6 @@ public class CommentDto {
     private LocalDateTime time;
     private String summary;
     private String text;
+    private String productId;
+    private String userId;
 }

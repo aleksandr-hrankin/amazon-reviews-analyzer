@@ -1,6 +1,7 @@
 package ua.antibyte.analyzer.entity;
 
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
     private String externalId;
     private String profileName;
@@ -27,5 +29,9 @@ public class User {
     public User(String password, Set<Role> roles) {
         this.password = password;
         this.roles = roles;
+    }
+
+    public User(String profileName) {
+        this.profileName = profileName;
     }
 }

@@ -1,4 +1,4 @@
-package ua.antibyte.analyzer.service.mapper;
+package ua.antibyte.analyzer.service.mapper.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ua.antibyte.analyzer.dto.CommentDto;
 import ua.antibyte.analyzer.entity.Product;
+import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 
 class ProductMapperTest {
-    private static final CommentDto FULL_COMMENT_DTO = CommentDto.builder()
+    private static final CommentRequestDto FULL_COMMENT_DTO = CommentRequestDto.builder()
             .id(1L)
             .productId("B00813GRG4")
             .userId("A1D87F6ZCVE5NK")
@@ -27,7 +27,8 @@ class ProductMapperTest {
                     + "this was an error or if the vendor intended to represent "
                     + "the product as 'Jumbo'.")
             .build();
-    private static final CommentDto COMMENT_DTO_WITHOUT_PRODUCT_FIELDS = CommentDto.builder()
+    private static final CommentRequestDto COMMENT_DTO_WITHOUT_PRODUCT_FIELDS
+            = CommentRequestDto.builder()
             .id(1L)
             .userId("A1D87F6ZCVE5NK")
             .profileName("dll pa")
@@ -42,7 +43,7 @@ class ProductMapperTest {
                     + "this was an error or if the vendor intended to represent "
                     + "the product as 'Jumbo'.")
             .build();
-    private static final CommentDto EMPTY_COMMENT_DTO = CommentDto.builder().build();
+    private static final CommentRequestDto EMPTY_COMMENT_DTO = CommentRequestDto.builder().build();
     private static ProductMapper productMapper;
 
     @BeforeAll
