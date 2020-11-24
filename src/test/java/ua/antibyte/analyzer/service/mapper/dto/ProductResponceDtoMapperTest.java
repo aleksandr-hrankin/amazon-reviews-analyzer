@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ua.antibyte.analyzer.entity.Product;
 import ua.antibyte.analyzer.entity.dto.response.ProductResponceDto;
+import ua.antibyte.analyzer.service.mapper.dto.response.ProductResponseDtoMapper;
 
 class ProductResponceDtoMapperTest {
     private static final ProductResponceDto EXPECTED_PRODUCT_RESP_DTO

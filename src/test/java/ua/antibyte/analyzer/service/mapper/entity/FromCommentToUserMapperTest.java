@@ -15,7 +15,7 @@ import ua.antibyte.analyzer.entity.User;
 import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 import ua.antibyte.analyzer.service.RoleService;
 
-class UserMapperTest {
+class FromCommentToUserMapperTest {
     private static final CommentRequestDto FULL_COMMENT_DTO = CommentRequestDto.builder()
             .id(1L)
             .productId("B00813GRG4")
@@ -51,13 +51,13 @@ class UserMapperTest {
             .userId("A1D87F6ZCVE5NK")
             .build();
     private static final CommentRequestDto EMPTY_COMMENT_DTO = CommentRequestDto.builder().build();
-    private static UserMapper userMapper;
+    private static FromCommentToUserMapper fromCommentToUserMapper;
 
     @BeforeAll
     public static void beforeAll() {
         RoleService roleService = Mockito.mock(RoleService.class);
         when(roleService.findByName("USER")).thenReturn(Role.of("USER"));
-        userMapper = new UserMapper(roleService);
+        fromCommentToUserMapper = new FromCommentToUserMapper(roleService);
     }
 
     @Test
@@ -66,14 +66,14 @@ class UserMapperTest {
         expectedUser.setExternalId("A1D87F6ZCVE5NK");
         expectedUser.setProfileName("dll pa");
 
-        User actualUser = userMapper.map(FULL_COMMENT_DTO);
+        User actualUser = fromCommentToUserMapper.map(FULL_COMMENT_DTO);
         assertEquals(expectedUser, actualUser);
     }
 
     @Test
     public void mappingCommentDtoWithoutUserFieldsTest() {
         User expectedUser = new User("1111", Set.of(Role.of("USER")));
-        User actualUser = userMapper.map(COMMENT_DTO_WITHOUT_USER_FIELDS);
+        User actualUser = fromCommentToUserMapper.map(COMMENT_DTO_WITHOUT_USER_FIELDS);
         assertEquals(expectedUser, actualUser);
     }
 
@@ -82,14 +82,14 @@ class UserMapperTest {
         User expectedUser = new User("1111", Set.of(Role.of("USER")));
         expectedUser.setExternalId("A1D87F6ZCVE5NK");
 
-        User actualUser = userMapper.map(INCOMPLETE_COMMENT_DTO);
+        User actualUser = fromCommentToUserMapper.map(INCOMPLETE_COMMENT_DTO);
         assertEquals(expectedUser, actualUser);
     }
 
     @Test
     public void mappingEmptyCommentDtoTest() {
         User expectedUser = new User("1111", Set.of(Role.of("USER")));
-        User actualUser = userMapper.map(EMPTY_COMMENT_DTO);
+        User actualUser = fromCommentToUserMapper.map(EMPTY_COMMENT_DTO);
         assertEquals(expectedUser, actualUser);
     }
 }

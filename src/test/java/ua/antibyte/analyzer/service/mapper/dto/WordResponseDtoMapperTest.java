@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ua.antibyte.analyzer.entity.Word;
 import ua.antibyte.analyzer.entity.dto.response.WordResponseDto;
+import ua.antibyte.analyzer.service.mapper.dto.response.WordResponseDtoMapper;
 
 class WordResponseDtoMapperTest {
     private static final WordResponseDto EXPECTED_WORD_RESP_DTO = new WordResponseDto("word", 1);

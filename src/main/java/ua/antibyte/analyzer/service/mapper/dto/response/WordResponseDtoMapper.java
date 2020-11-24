@@ -1,4 +1,4 @@
-package ua.antibyte.analyzer.service.mapper.dto;
+package ua.antibyte.analyzer.service.mapper.dto.response;
 
 import org.springframework.stereotype.Component;
 import ua.antibyte.analyzer.entity.Word;

@@ -20,10 +20,10 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(value = "/most-commented")
+    @GetMapping("/most-commented")
     @ApiOperation("Get a list of the most commented products")
     public List<ProductResponceDto> getMostCommented(
-            @ApiParam(value = "You can enter the number of products to return")
+            @ApiParam("You can enter the number of products to return")
             @RequestParam(defaultValue = PAGE_SIZE) int quantity) {
         return productService.findMostCommented(quantity);
     }
