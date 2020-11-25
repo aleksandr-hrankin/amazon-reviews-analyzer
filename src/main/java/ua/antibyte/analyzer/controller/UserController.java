@@ -1,5 +1,7 @@
 package ua.antibyte.analyzer.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,9 @@ public class UserController {
     }
 
     @GetMapping("/most-active")
+    @ApiOperation(value = "Get a list of the most active users")
     public List<UserResponseDto> getMostActive(
+            @ApiParam(name = "You can enter the number of users to return")
             @RequestParam(defaultValue = PAGE_SIZE) int quantity) {
         return userService.findMostActive(quantity);
     }

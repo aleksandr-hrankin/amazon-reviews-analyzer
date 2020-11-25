@@ -1,5 +1,7 @@
 package ua.antibyte.analyzer.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,9 @@ public class CommentController {
     }
 
     @GetMapping("/most-used-words")
+    @ApiOperation(value = "Get a list of the most used words")
     public List<WordResponseDto> getMostUsedWords(
+            @ApiParam(value = "You can enter the number of words to return")
             @RequestParam(defaultValue = PAGE_SIZE) int quantity) {
         return wordService.findMostUsedWords(quantity).stream()
                 .map(wordResponseDtoMapper::map)
