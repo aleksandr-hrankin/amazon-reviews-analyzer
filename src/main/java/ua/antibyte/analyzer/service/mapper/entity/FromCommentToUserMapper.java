@@ -7,12 +7,12 @@ import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 import ua.antibyte.analyzer.service.RoleService;
 
 @Component
-public class UserMapper {
+public class FromCommentToUserMapper {
     private static final String USER_PASSWORD = "1111";
     private static final String USER_ROLE = "USER";
     private final RoleService roleService;
 
-    public UserMapper(RoleService roleService) {
+    public FromCommentToUserMapper(RoleService roleService) {
         this.roleService = roleService;
     }
 

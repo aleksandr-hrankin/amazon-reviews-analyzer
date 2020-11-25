@@ -10,20 +10,20 @@ import ua.antibyte.analyzer.entity.Product;
 import ua.antibyte.analyzer.entity.User;
 import ua.antibyte.analyzer.entity.dto.request.CommentRequestDto;
 import ua.antibyte.analyzer.service.mapper.entity.CommentMapper;
+import ua.antibyte.analyzer.service.mapper.entity.FromCommentToUserMapper;
 import ua.antibyte.analyzer.service.mapper.entity.ProductMapper;
-import ua.antibyte.analyzer.service.mapper.entity.UserMapper;
 
 @Component
 public class CommentRequestDtosParser {
     private final ProductMapper productMapper;
-    private final UserMapper userMapper;
+    private final FromCommentToUserMapper fromCommentToUserMapper;
     private final CommentMapper commentMapper;
 
     public CommentRequestDtosParser(ProductMapper productMapper,
-                                    UserMapper userMapper,
+                                    FromCommentToUserMapper fromCommentToUserMapper,
                                     CommentMapper commentMapper) {
         this.productMapper = productMapper;
-        this.userMapper = userMapper;
+        this.fromCommentToUserMapper = fromCommentToUserMapper;
         this.commentMapper = commentMapper;
     }
 
@@ -35,7 +35,7 @@ public class CommentRequestDtosParser {
                     Product product = productMapper.map(commentRequestDto);
                     products.putIfAbsent(product.getExternalId(), product);
 
-                    User user = userMapper.map(commentRequestDto);
+                    User user = fromCommentToUserMapper.map(commentRequestDto);
                     users.putIfAbsent(user.getExternalId(), user);
 
                     Comment comment = commentMapper.map(commentRequestDto);

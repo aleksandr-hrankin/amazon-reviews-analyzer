@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ua.antibyte.analyzer.entity.User;
 import ua.antibyte.analyzer.entity.dto.response.UserResponseDto;
+import ua.antibyte.analyzer.service.mapper.dto.response.UserResponseDtoMapper;
 
 class UserResponseDtoMapperTest {
     private static final UserResponseDto EXPECTED_USER_RESP_DTO = new UserResponseDto("dll pa");

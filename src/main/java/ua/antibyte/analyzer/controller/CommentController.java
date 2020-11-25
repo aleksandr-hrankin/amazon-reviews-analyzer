@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.antibyte.analyzer.entity.dto.response.WordResponseDto;
 import ua.antibyte.analyzer.service.WordService;
-import ua.antibyte.analyzer.service.mapper.dto.WordResponseDtoMapper;
+import ua.antibyte.analyzer.service.mapper.dto.response.WordResponseDtoMapper;
 
 @RestController
 @RequestMapping("/comments")
